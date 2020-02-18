@@ -29,14 +29,12 @@ head(x)
 #Consider the 5 departments with the most students enrolled this semester. For each department, which is the biggest new course?
 ```
 ```{r}
-x %>%
-  arrange(desc(u_grad)) %>%
-  slice(1:5)
 
 x %>%
-  group_by(course_department) %>%
+  group_by(course_department, course_name) %>%
   summarise(total_ugrad = sum(u_grad)) %>%
-  arrange(desc(total_ugrad))
+  arrange(desc(total_ugrad)) %>%
+  slice(1:5)
 ```
 
 
